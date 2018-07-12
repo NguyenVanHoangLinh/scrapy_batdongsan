@@ -1,7 +1,6 @@
 import scrapy
 from ..items import real_estateItem
 from scrapy.utils.markup import remove_tags
-from scrapy_splash import  SplashRequest
 class RealEstateSpider(scrapy.Spider):
     name = "estate"
     start_urls = ['https://batdongsan.com.vn/nha-dat-ban/p1']
