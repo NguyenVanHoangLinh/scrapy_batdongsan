@@ -14,7 +14,7 @@ class RealEstateSpider(scrapy.Spider):
     def parse(self, response):
         # follow links to estate page
         for href in response.css('div.p-title h3 a::attr(href)'):
-            yield SplashRequest(href, self.parse_estate)
+            yield SplashRequest(response.urljoin(href), self.parse_estate)
 
         # follow pagination links
         next_page_url = response.css('div.background-pager-right-controls a:nth-last-child(3)::attr(href)').extract_first()
