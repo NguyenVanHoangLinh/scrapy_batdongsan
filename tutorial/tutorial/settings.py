@@ -17,14 +17,6 @@ FEED_EXPORT_ENCODING='utf-8'
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A'
 SPLASH_URL = 'http://localhost:8050'
-DOWNLOADER_MIDDLEWARES = {
-    'scrapy_splash.SplashCookiesMiddleware': 723,
-    'scrapy_splash.SplashMiddleware': 725,
-    'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
-}
-SPIDER_MIDDLEWARES = {
-    'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,
-}
 DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -54,15 +46,19 @@ DOWNLOAD_DELAY = 1
 
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
-# SPIDER_MIDDLEWARES = {
-#    'tutorial.middlewares.TutorialSpiderMiddleware': 543,
-# }
+SPIDER_MIDDLEWARES = {
+    'tutorial.middlewares.TutorialSpiderMiddleware': 543,
+    'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,
+}
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-# DOWNLOADER_MIDDLEWARES = {
-#     'tutorial.middlewares.TutorialDownloaderMiddleware': 543,
-# }
+DOWNLOADER_MIDDLEWARES = {
+     'tutorial.middlewares.TutorialDownloaderMiddleware': 543,
+     'scrapy_splash.SplashCookiesMiddleware': 723,
+     'scrapy_splash.SplashMiddleware': 725,
+     'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
+ }
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
