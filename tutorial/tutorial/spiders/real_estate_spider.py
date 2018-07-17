@@ -4,18 +4,17 @@ from scrapy.utils.markup import remove_tags
 from scrapy_splash import SplashRequest
 class RealEstateSpider(scrapy.Spider):
     name = "estate"
-    
     def start_requests(self):
         yield SplashRequest(
             url='https://batdongsan.com.vn/nha-dat-ban/p1',
-            callback=self.parse,
+            callback=self.parse
         )
     
 
     def parse(self, response):
         # follow links to estate page
         for href in response.css('div.p-title h3 a::attr(href)'):
-            yield response.follow(href, self.parse_estate)
+            yield SplashRequest(href, self.parse_estate)
 
         # follow pagination links
         next_page_url = response.css('div.background-pager-right-controls a:nth-last-child(3)::attr(href)').extract_first()
