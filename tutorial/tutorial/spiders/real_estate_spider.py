@@ -7,7 +7,7 @@ class RealEstateSpider(scrapy.Spider):
     
     def start_requests(self):
         yield SplashRequest(
-            start_urls = 'https://batdongsan.com.vn/nha-dat-ban/p1',
+            url='https://batdongsan.com.vn/nha-dat-ban/p1',
             callback=self.parse,
         )
     
