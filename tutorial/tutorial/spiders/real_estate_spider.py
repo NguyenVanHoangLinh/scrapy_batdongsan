@@ -1,9 +1,16 @@
 import scrapy
 from ..items import real_estateItem
 from scrapy.utils.markup import remove_tags
+from scrapy_splash import SplashRequest
 class RealEstateSpider(scrapy.Spider):
     name = "estate"
-    start_urls = ['https://batdongsan.com.vn/nha-dat-ban/p1']
+    
+    def start_requests(self):
+        yield SplashRequest(
+            start_urls = 'https://batdongsan.com.vn/nha-dat-ban/p1',
+            callback=self.parse,
+        )
+    
 
     def parse(self, response):
         # follow links to estate page
@@ -35,7 +42,7 @@ class RealEstateSpider(scrapy.Spider):
         estate_seller_address = extract_with_css('div#LeftMainContent__productDetail_contactAddress div.right::text')
         estate_seller_phone = extract_with_css('div#LeftMainContent__productDetail_contactPhone div.right::text')
         estate_seller_mobile = extract_with_css('div#LeftMainContent__productDetail_contactMobile div.right::text')
-        estate_seller_email = extract_with_css('div#LeftMainContent__productDetail_contactMobile div.right::text')
+        estate_seller_email = extract_with_css('div#contactEmail div.right a::text')
 
         estateItem = real_estateItem(estate_title= estate_title,estate_address=estate_address,estate_area=estate_area,estate_description=estate_description,estate_price=estate_price,estate_type=estate_type,estate_tag=estate_tag,estate_seller_name=estate_seller_name,estate_seller_address=estate_seller_address,estate_seller_phone=estate_seller_phone,estate_seller_mobile=estate_seller_mobile,estate_seller_email=estate_seller_email)
         yield estateItem
