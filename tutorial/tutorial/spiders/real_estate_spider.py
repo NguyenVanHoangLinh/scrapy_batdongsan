@@ -7,13 +7,13 @@ class RealEstateSpider(scrapy.Spider):
     def start_requests(self):
         yield SplashRequest(
             url='https://batdongsan.com.vn/nha-dat-ban/p1',
-            callback=self.parse
+            callback=self.parse,
         )
     
 
     def parse(self, response):
         # follow links to estate page
-        for href in response.css('div.p-title h3 a::attr(href)'):
+        for href in response.css('div.p-title h3 a::attr(href)').extract():
             yield SplashRequest(response.urljoin(href), self.parse_estate)
 
         # follow pagination links
