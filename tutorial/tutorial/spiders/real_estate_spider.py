@@ -52,3 +52,5 @@ class RealEstateSpider(scrapy.Spider):
         estateItem = real_estateItem(estate_title= estate_title,estate_address=estate_address,estate_area=estate_area,estate_description=estate_description,estate_price=estate_price,estate_type=estate_type,estate_tag=estate_tag,estate_date=estate_date,estate_seller_name=estate_seller_name,estate_seller_address=estate_seller_address,estate_seller_phone=estate_seller_phone,estate_seller_mobile=estate_seller_mobile,estate_seller_email=estate_seller_email)
         if start_date >= end_date:
             yield estateItem
+        else:
+            print('hello')
