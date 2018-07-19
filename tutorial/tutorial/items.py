@@ -14,6 +14,7 @@ class real_estateItem(scrapy.Item):
      estate_price = scrapy.Field()
      estate_type = scrapy.Field()
      estate_tag = scrapy.Field()
+     estate_date = scraped.Field()
      estate_seller_name = scrapy.Field()
      estate_seller_address = scrapy.Field()
      estate_seller_phone = scrapy.Field()
