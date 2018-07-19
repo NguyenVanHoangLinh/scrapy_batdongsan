@@ -47,8 +47,8 @@ class RealEstateSpider(scrapy.Spider):
         estate_seller_phone = extract_with_css('div#LeftMainContent__productDetail_contactPhone div.right::text')
         estate_seller_mobile = extract_with_css('div#LeftMainContent__productDetail_contactMobile div.right::text')
         estate_seller_email = extract_with_css('div#contactEmail div.right a::text')
-        start_date =dt.strptime(estate_date,"%d-%m-%Y")
-        end_date =dt.strptime(estate_expired_date,"%d-%m-%Y")
+        # start_date =dt.strptime(estate_date,"%d-%m-%Y")
+        # end_date =dt.strptime(estate_expired_date,"%d-%m-%Y")
         estateItem = real_estateItem(estate_title= estate_title,estate_address=estate_address,estate_area=estate_area,estate_description=estate_description,estate_price=estate_price,estate_type=estate_type,estate_tag=estate_tag,estate_date=estate_date,estate_seller_name=estate_seller_name,estate_seller_address=estate_seller_address,estate_seller_phone=estate_seller_phone,estate_seller_mobile=estate_seller_mobile,estate_seller_email=estate_seller_email)
-        if start_date <= end_date:
-            yield estateItem
+        # if start_date <= end_date:
+        yield estateItem
