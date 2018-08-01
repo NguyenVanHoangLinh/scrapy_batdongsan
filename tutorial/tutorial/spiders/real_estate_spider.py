@@ -52,3 +52,10 @@ class RealEstateSpider(scrapy.Spider):
         estateItem = real_estateItem(estate_title= estate_title,estate_address=estate_address,estate_area=estate_area,estate_description=estate_description,estate_price=estate_price,estate_type=estate_type,estate_tag=estate_tag,estate_date=estate_date,estate_seller_name=estate_seller_name,estate_seller_address=estate_seller_address,estate_seller_phone=estate_seller_phone,estate_seller_mobile=estate_seller_mobile,estate_seller_email=estate_seller_email)
         # if start_date <= end_date:
         yield estateItem
+
+from scrapy.crawler import CrawlerProcess
+c = CrawlerProcess({
+    'USER_AGENT': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A',
+})
+c.crawl(RealEstateSpider)
+c.start()
