@@ -1,0 +1,42 @@
+version: "3"
+services:
+  interface:
+    links:
+      - postgres:postgres
+    image: adminer
+    ports:
+      - "8080:8080"
+    networks:
+      - webnet
+  postgres:
+    image: postgres
+    container_name: postgres
+    environment:
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: '123'
+    volumes:
+    - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - webnet
+
+  web:
+    # replace username/repo:tag with your name and image details
+    image: hlinh/scrapy:latest
+    build: ./tutorial
+    ports:
+      - "8081:8081"
+    networks:
+      - webnet
+    environment:
+      DB_HOST: postgres
+    networks:
+      - webnet
+  splash:
+    image: scrapinghub/splash
+    ports:
+     - "8050:8050"
+    expose:
+     - "8050"
+networks:
+  webnet:
+
