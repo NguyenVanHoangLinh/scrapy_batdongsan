@@ -13,7 +13,6 @@ class TutorialPipeline(object):
         password = '123' # your password
         database = 'real_estate'
         self.connection = psycopg2.connect(host=hostname, user=username, password=password, dbname=database)
-        self.cur = self.connection.cursor()
 
     def close_spider(self, spider):
         self.connection.cursor().close()
