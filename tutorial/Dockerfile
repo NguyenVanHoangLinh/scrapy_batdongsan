@@ -9,5 +9,6 @@ WORKDIR /scrapy_batdongsan
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 80
+EXPOSE 5432
 CMD scrapy crawl estate
 

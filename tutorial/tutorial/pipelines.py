@@ -8,7 +8,7 @@
 import psycopg2
 class TutorialPipeline(object):
     def open_spider(self, spider):
-        hostname = 'localhost'
+        hostname = '172.17.0.1'
         username = 'postgres'
         password = '123' # your password
         database = 'real_estate'
